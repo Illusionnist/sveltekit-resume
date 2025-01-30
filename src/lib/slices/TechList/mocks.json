@@ -1,0 +1,40 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "growth",
+				"type": "Text"
+			},
+			"items": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"techname",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "shelf",
+									"type": "Text"
+								}
+							],
+							[
+								"tech_colour",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "#e0a4dc",
+									"type": "Color"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
