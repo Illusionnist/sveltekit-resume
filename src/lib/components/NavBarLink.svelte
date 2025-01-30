@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 	import { asLink, type KeyTextField, type LinkField } from '@prismicio/client';
 	import { PrismicLink } from '@prismicio/svelte';
 
@@ -8,7 +8,7 @@
 	export let onLinkClick: (event: MouseEvent) => void;
 	export let type: 'desktop' | 'mobile';
 	const path = asLink(field);
-	$: isActive = path && page.url.pathname.includes(path);
+	$: isActive = path && $page.url.pathname.includes(path);
 </script>
 
 {#if type === 'desktop'}
