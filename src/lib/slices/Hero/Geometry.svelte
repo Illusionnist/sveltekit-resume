@@ -77,7 +77,7 @@
 		reducedMotionRate = prefersReducedMotion ? 0 : 1;
 	});
 
-	let compoundRate = rate * reducedMotionRate;
+	$: compoundRate = rate * reducedMotionRate;
 </script>
 
 <Threlte.Group position={position.map((p) => p * 2)}>
