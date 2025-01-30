@@ -10,6 +10,18 @@
 	const last_name_letters = slice.primary.last_name?.split('') ?? '';
 
 	onMount(() => {
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (prefersReducedMotion) {
+			gsap.to('.name-animation', {
+				opacity: 1,
+				duration: 0
+			});
+			gsap.to('.job-title', {
+				opacity: 1,
+				duration: 0
+			});
+		}
+
 		const tl = gsap.timeline();
 		tl.fromTo(
 			'.name-animation',
