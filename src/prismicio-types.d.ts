@@ -182,7 +182,7 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
-type ProjectDocumentDataSlicesSlice = RichTextSlice | ImageblockSlice;
+type ProjectDocumentDataSlicesSlice = ButtonSlice | RichTextSlice | ImageblockSlice;
 
 /**
  * Content for Project documents
@@ -291,7 +291,7 @@ export interface SettingsDocumentDataNavItemsItem {
 	 * - **API ID Path**: settings.nav_items[].link
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	link: prismic.LinkField;
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 
 	/**
 	 * label field in *Settings → Nav Items*
@@ -339,7 +339,7 @@ interface SettingsDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	cta_link: prismic.LinkField;
+	cta_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 
 	/**
 	 * CTA Label field in *Settings*
@@ -361,7 +361,7 @@ interface SettingsDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	github_link: prismic.LinkField;
+	github_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 
 	/**
 	 * Linkedin Link field in *Settings*
@@ -372,7 +372,7 @@ interface SettingsDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	linkedin_link: prismic.LinkField /**
+	linkedin_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never> /**
 	 * Meta Title field in *Settings*
 	 *
 	 * - **Field Type**: Text
@@ -465,7 +465,7 @@ export interface BioSliceDefaultPrimary {
 	 * - **API ID Path**: bio.default.primary.button_link
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
-	button_link: prismic.LinkField;
+	button_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 
 	/**
 	 * Avatar field in *Bio → Default → Primary*
@@ -504,6 +504,58 @@ type BioSliceVariation = BioSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type BioSlice = prismic.SharedSlice<'bio', BioSliceVariation>;
+
+/**
+ * Primary content in *Button → Default → Primary*
+ */
+export interface ButtonSliceDefaultPrimary {
+	/**
+	 * Button Label field in *Button → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: button.default.primary.button_label
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	button_label: prismic.KeyTextField;
+
+	/**
+	 * Button Link field in *Button → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: button.default.primary.button_link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	button_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Default variation for Button Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ButtonSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<ButtonSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Button*
+ */
+type ButtonSliceVariation = ButtonSliceDefault;
+
+/**
+ * Button Shared Slice
+ *
+ * - **API ID**: `button`
+ * - **Description**: Button
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ButtonSlice = prismic.SharedSlice<'button', ButtonSliceVariation>;
 
 /**
  * Primary content in *ContentIndex → Default → Primary*
@@ -945,6 +997,10 @@ declare module '@prismicio/client' {
 			BioSliceDefaultPrimary,
 			BioSliceVariation,
 			BioSliceDefault,
+			ButtonSlice,
+			ButtonSliceDefaultPrimary,
+			ButtonSliceVariation,
+			ButtonSliceDefault,
 			ContentIndexSlice,
 			ContentIndexSliceDefaultPrimary,
 			ContentIndexSliceVariation,
